@@ -86,8 +86,10 @@ var LandUseLookup = (code) => {
 // use jquery to programmatically create a Legend
 // for numbers 1 - 11, get the land use color and description
 for (var i=1; i<12; i++) {
+  // lookup the landuse info for the current iteration
   const landuseInfo = LandUseLookup(i);
 
+  // this is a simple jQuery template, it will append a div to the legend with the color and description
   $('.legend').append(`
     <div>
       <div class="legend-color-box" style="background-color:${landuseInfo.color};"></div>
