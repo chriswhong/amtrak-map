@@ -1,6 +1,51 @@
+html, body {
+  height: 100%;
+  width: 100%;
+  margin:0
+}
+
 #mapContainer {
-  height: 500px;
-  width: 500px;
+  height: 100%;
+  width: 100%;
   background: lightgray;
   margin: 0 auto;
+}
+
+#sidebar {
+  width: 300px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 10;
+  padding: 15px;
+}
+
+.info-box {
+  top: 25px;
+  left: 25px;
+  z-index: 10;
+  background-color: #c3c3c3;
+  padding: 15px;
+  border-radius: 11px;
+  box-shadow: 1px 1px 7px #525252;
+  margin-bottom:15px
+}
+
+h3 {
+  margin: 0 0 15px 0;
+  font-size: 1rem;
+}
+
+button {
+  padding: 10px;
+  font-weight: 500;
+  border-radius: 5px;
+}
+
+.legend-color-box {
+  height: 15px;
+  width: 15px;
+  float: left;
+  margin-right: 10px;
 }

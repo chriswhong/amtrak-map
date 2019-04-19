@@ -13,20 +13,34 @@
   </head>
 
   <body>
-    <div id="lot-info">
-      <span id="address">Move the mouse over a lot for address and land use info</span><br/>
-      <span id="landuse"></span>
+    <div id="mapContainer">
+      <div id="sidebar">
+        <div class="info-box">
+          <h3>Greenpoint Land Use Map</h3>
+          <span id="address">Move the mouse over a lot for address and land use info</span><br/>
+          <span id="landuse"></span>
+        </div>
+        <div class="info-box">
+          <h3>Fly to Neighborhood</h3>
+          <!-- These buttons use data attributes, which we can easily pull using jquery -->
+          <button class="flyto" data-neighborhood="park-slope">Park Slope</button>
+          <button class="flyto" data-neighborhood="morningside-heights">Morningside Heights</button>
+          <button class="flyto" data-neighborhood="fidi">FiDi</button>
+          <hr/>
+          <button class="flyto" data-neighborhood="greenpoint">Back to Greenpoint</button>
+        </div>
+        <div class="info-box legend">
+          <h3>Legend</h3>
+          <!-- We'll programmatically make the legend here -->
+        </div>
+      </div>
     </div>
-
-    <button id="fly-to-park-slope">Click me to go to Park Slope!</button>
-    <div id="mapContainer"></div>
 
     <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.1/mapbox-gl.js'></script>
     <script
     src="https://code.jquery.com/jquery-3.3.1.min.js"
     integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
     crossorigin="anonymous"></script>
-    <script src="js/studentData.js"></script>
     <script src="js/scripts.js"></script>
   </body>
 </html>
