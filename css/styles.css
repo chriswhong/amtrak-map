@@ -42,10 +42,3 @@ button {
   font-weight: 500;
   border-radius: 5px;
 }
-
-.legend-color-box {
-  height: 15px;
-  width: 15px;
-  float: left;
-  margin-right: 10px;
-}

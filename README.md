@@ -1,3 +1,3 @@
-# nyu-2019-class4
+# amtrak-map
 
-Example of using geojson to make an interactive land use map in mapboxGL
+Shows real-time amtrak locations on a mapboxGL map
