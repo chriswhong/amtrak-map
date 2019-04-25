@@ -13,6 +13,17 @@ const mapHeadings = {
 }
 
 const SQLAPICall = (SQL) => `https://amtk.carto.com/api/v2/sql?q=${SQL}&format=geojson&api_key=bac8df5ef273de9fc3132b053f03513326f65531`;
+const loadData = (cb) => {
+  $.getJSON(SQLAPICall('SELECT * FROM amtk.vall_ttm_trains'), (trainData) => {
+    window.trainData = trainData
+    // update headings to be numbers
+    trainData.features = trainData.features.map((feature) => {
+      feature.properties.heading = mapHeadings[feature.properties.heading];
+      return feature;
+    });
+    cb && cb(trainData);
+  });
+};
 
 // instantiate the map
 const map = new mapboxgl.Map({
@@ -29,14 +40,7 @@ map.addControl(new mapboxgl.NavigationControl());
 
 // we can't add our own sources and layers until the base style is finished loading
 map.on('style.load', function() {
-  $.getJSON(SQLAPICall('SELECT * FROM amtk.vall_ttm_trains'), (trainData) => {
-    window.trainData = trainData
-    // update headings to be numbers
-    trainData.features = trainData.features.map((feature) => {
-      feature.properties.heading = mapHeadings[feature.properties.heading];
-      return feature;
-    });
-
+  loadData((trainData) => {
     map.loadImage('https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Font_Awesome_5_solid_arrow-circle-up.svg/240px-Font_Awesome_5_solid_arrow-circle-up.svg.png', function(error, image) {
       map.addImage('train-marker', image);
       map.addSource('all-ttm-trains', {
@@ -130,5 +134,12 @@ map.on('style.load', function() {
       map.getCanvas().style.cursor = '';
       popup.remove();
     });
+
+    window.setInterval(() => {
+      const trainDataSource = map.getSource('all-ttm-trains');
+      loadData((td) => {
+        trainDataSource.setData(td);
+      });
+    }, 10000);
   });
 });
